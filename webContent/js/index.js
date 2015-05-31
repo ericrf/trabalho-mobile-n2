@@ -1,4 +1,4 @@
-var host = "http://localhost:8080/mock-service/";
+var host = "http://www.robsonluz.com.br/";
 
 $.ajaxSetup({
 	dataType: "json",
