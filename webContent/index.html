@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/geral.js"></script>
+<script src="js/toast.js"></script>
+<script src="js/jquery.mobile-1.4.1.min.js"></script>
+<script src="js/jquery.tmpl.min.js"></script>
+<link rel="stylesheet" href="css/jquery.mobile-1.4.1.min.css">
+<script src="js/index.js" type="text/javascript" ></script>
+
+<title>Rede Social - Trabalho N2</title>
+
+</head>
+<body>
+
+
+  <div id="loginPage" data-role="page">
+  	<div data-role="header">
+  	  <h1>Rede Social - Login</h1>
+      <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
+  	</div>
+  	<div data-role="content">
+  	  <div class="ui-body ui-body-c">
+        <form onsubmit="return false;">
+          <div data-role="fieldcontain">
+            <label for="email">Username:</label>
+            <input type="text" name="email" value=""  />
+          </div>
+          <div data-role="fieldcontain">
+            <label for="senha">Password:</label>
+            <input type="password" name="senha" value=""  />
+          </div>
+          <div data-role="fieldcontain">
+            <input type="submit" value="login"/>
+          </div>
+        </form>
+        <a href="#cadastre-se" class="ui-btn" >Cadastre-se</a> 
+      </div>
+  	</div>
+  </div>
+  
+  <div id="cadastre-se" data-role="page">
+  	<div data-role="header">
+  	  <h1>Rede Social - Cadastro</h1>
+      <a href="index.html" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
+  	</div>
+  	<div data-role="content">
+  	  <div class="ui-body ui-body-c">
+        <form onsubmit="return false;">
+          <div data-role="fieldcontain">
+            <label for="nome">Fullname:</label>
+            <input type="text" name="nome" value=""  />
+          </div>
+          <div data-role="fieldcontain">
+            <label for="email">Username:</label>
+            <input type="text" name="email" value=""  />
+          </div>
+          <div data-role="fieldcontain">
+            <label for="senha">Password:</label>
+            <input type="password" name="senha" value=""  />
+          </div>
+          <div data-role="fieldcontain">
+            <input type="submit" value="Cadastrar"/>
+          </div>
+        </form>
+      </div>
+  	</div>
+  </div>
+  
+  
+  
+  
+  <div id="streamPage" data-role="page">
+  	<div data-role="header">
+  	  <h1>Rede Social - Stream</h1>
+      <a href="#streamPage" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
+      <a href="#postPage" data-icon="plus" data-iconpos="notext">&nbsp;</a>
+  	</div>
+  	<div data-role="content">
+  	  <script id="postTemplate" type="text/x-jquery-tmpl">
+  	    <li>
+			<a href="#viewCommentsPage" onclick="postId=${id}" class="ui-icon-comment"><span>${texto}</span></a>
+		</li>
+	  </script>
+  	  <ul data-role="listview" data-inset="true" id="posts"></ul>
+  	</div>
+  </div> 
+  
+  
+  
+  
+  
+  <div id="postPage" data-role="page">
+  	<div data-role="header">
+  	  <h1>Rede Social - Post</h1>
+      <a href="#streamPage" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
+  	</div>
+  	<div data-role="content">
+  	<div class="ui-body ui-body-c">
+        <form onsubmit="return false;">
+          <div data-role="fieldcontain">
+            <label for="texto">Mensagem:</label>
+            <textarea cols="40" rows="8" name="texto"></textarea>
+          </div>
+          <div data-role="fieldcontain">
+            <input type="submit" value="Postar"/>
+          </div>
+        </form>
+      </div>
+  	</div>
+  </div> 
+  
+  <div id="commentPage" data-role="page">
+  	<div data-role="header">
+  	  <h1>Rede Social - Post</h1>
+      <a href="#streamPage" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
+  	</div>
+  	<div data-role="content">
+  	<div class="ui-body ui-body-c">
+        <form onsubmit="return false;">
+          <input type="hidden" name="postId" />
+          <div data-role="fieldcontain">
+            <label for="texto">Mensagem:</label>
+            <textarea cols="40" rows="8" name="texto"></textarea>
+          </div>
+          <div data-role="fieldcontain">
+            <input type="submit" value="Postar"/>
+          </div>
+        </form>
+      </div>
+  	</div>
+  </div> 
+  
+  <div id="viewCommentsPage" data-role="page">
+  	<div data-role="header">
+  	  <h1>Rede Social - Post</h1>
+      <a href="#streamPage" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
+      <a href="#commentPage" data-icon="plus" data-iconpos="notext">&nbsp;</a>
+  	</div>
+  	<div data-role="content">
+  	  <div class="ui-body ui-body-c">
+  	  	<script id="commentTemplate" type="text/x-jquery-tmpl">
+  	      <li><span>${texto}</span></li>
+	    </script>
+        <ul data-role="listview" data-inset="true" id="comments"></ul>
+      </div>
+  	</div>
+  </div> 
+  
+  
+</body>
+</html>
