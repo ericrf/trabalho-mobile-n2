@@ -4,18 +4,17 @@ $.ajaxSetup({
 	dataType: "json",
 	beforeSend: function(request){ $.mobile.loading('show'); },
 	error: function(){ toast("erro ao realizar o operacao") },
-	complete: function(){ $.mobile.loading('hide'); }
+	complete: function(){ $.mobile.loading('hide'); },
+	xhrFields: { withCredentials: true },
+	crossDomain: true
 });
 
 
-
 var loginSuccesCallback = function(response){
-//	if(!response.id){
-//		toast("erro ao realizar o operação");
-//		return;
-//	}
-//	toast("sucesso");
-//	console.log("usuário logado: " + response.id);
+	if(!response.id){
+		toast("erro ao realizar o operação");
+		return;
+	}
 	$.mobile.changePage("#streamPage");
 };
 
