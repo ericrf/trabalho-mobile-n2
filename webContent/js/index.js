@@ -17,7 +17,10 @@ var loginSuccesCallback = function(response){
 	}
 	$.mobile.changePage("#streamPage");
 };
-
+$(document).on("pagecontainerbeforeshow", function(){
+	$("form").unbind();
+	$("input[type!='submit'], textarea").each(function(){$(this).val("")})
+});
 $(document).on("pageshow", "#loginPage", function(){
 	$("form").submit(function(event){
 		$.ajax({
@@ -47,14 +50,20 @@ var loadStreamSuccessCallback = function(response){
 		toast(response.message);
 		return;
 	}
+
+	if(response.length == 0){
+		$.mobile.changePage("#postPage");
+		return;
+	}
 	
-	posts = response;
-	$("#posts").html("");
+	sessionStorage.setItem("posts", JSON.stringify(response)) ;
+	
 	$("#postTemplate").tmpl(response).appendTo("#posts");
 	$("#posts").listview("refresh", true);
 	
 }
 $(document).on("pageshow", "#streamPage", function(){
+	$("#posts").html("");
 	$.ajax({
 		type: "GET",
 		url: host + "stream/index.json",
@@ -74,7 +83,7 @@ $(document).on("pageshow", "#postPage", function(){
 });
 
 $(document).on("pageshow", "#commentPage", function(){
-	$("#commentPage input[name='postId']").val(postId);
+	$("#commentPage input[name='postId']").val(sessionStorage.postId);
 	$("form").submit(function(event){
 		$.ajax({
 			type: "POST",
@@ -87,8 +96,15 @@ $(document).on("pageshow", "#commentPage", function(){
 
 $(document).on("pageshow", "#viewCommentsPage", function(){
 	$("#comments").html("");
+	var posts = JSON.parse(sessionStorage.getItem('posts'));
 	for(i in posts){
-		if(posts[i].id == postId){
+		if(posts[i].id == sessionStorage.getItem('postId')){
+			
+			if(posts[i].comentarios.length == 0){
+				$.mobile.changePage("#commentPage");
+				return;
+			}
+			
 			$("#commentTemplate").tmpl(posts[i].comentarios).appendTo("#comments");
 		}
 	}

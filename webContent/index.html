@@ -82,7 +82,7 @@
   	<div data-role="content">
   	  <script id="postTemplate" type="text/x-jquery-tmpl">
   	    <li>
-			<a href="#viewCommentsPage" onclick="postId=${id}" class="ui-icon-comment"><span>${texto}</span></a>
+			<a href="#viewCommentsPage" onclick="sessionStorage.setItem('postId', ${id})" class="ui-icon-comment"><span>${texto}</span></a>
 		</li>
 	  </script>
   	  <ul data-role="listview" data-inset="true" id="posts"></ul>
@@ -115,7 +115,7 @@
   
   <div id="commentPage" data-role="page">
   	<div data-role="header">
-  	  <h1>Rede Social - Post</h1>
+  	  <h1>Rede Social - Comentar</h1>
       <a href="#streamPage" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
   	</div>
   	<div data-role="content">
@@ -136,7 +136,7 @@
   
   <div id="viewCommentsPage" data-role="page">
   	<div data-role="header">
-  	  <h1>Rede Social - Post</h1>
+  	  <h1>Rede Social - Comentários</h1>
       <a href="#streamPage" data-icon="home" data-iconpos="notext" data-direction="reverse">&nbsp;</a>
       <a href="#commentPage" data-icon="plus" data-iconpos="notext">&nbsp;</a>
   	</div>
