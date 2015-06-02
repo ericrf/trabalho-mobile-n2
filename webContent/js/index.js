@@ -9,15 +9,29 @@ $.ajaxSetup({
 	crossDomain: true
 });
 
+var registroSucessCalback = function(response){
+	$.ajax({
+		type: "POST",
+		url: host + "login/login.json",
+		data: $("#cadastre-se form").serialize(),
+		success: loginSuccesCallback
+	});
+}
 
 var loginSuccesCallback = function(response){
 	if(!response.id){
 		toast("erro ao realizar o operação");
 		return;
 	}
+	sessionStorage.setItem("user", JSON.stringify(response)) ;
 	$.mobile.changePage("#streamPage");
 };
 $(document).on("pagecontainerbeforeshow", function(){
+	if(!sessionStorage.user){
+		$.mobile.changePage("#loginPage");
+		return;
+	}
+	
 	$("form").unbind();
 	$("input[type!='submit'], textarea").each(function(){$(this).val("")})
 });
@@ -38,7 +52,7 @@ $(document).on("pageshow", "#cadastre-se", function(event){
 			type: "POST",
 			url: host + "register/save.json",
 			data: $("#cadastre-se form").serialize(),
-			success: loginSuccesCallback
+			success: registroSucessCalback
 		});
 	});
 });
