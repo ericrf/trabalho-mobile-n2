@@ -9,13 +9,16 @@ $.ajaxSetup({
 	crossDomain: true
 });
 
-var registroSucessCalback = function(response){
+var doLogin = function(data){
 	$.ajax({
 		type: "POST",
 		url: host + "login/login.json",
-		data: $("#cadastre-se form").serialize(),
+		data: data,
 		success: loginSuccesCallback
 	});
+}
+var registroSucessCalback = function(response){
+	doLogin($("#cadastre-se form").serialize());
 }
 
 var loginSuccesCallback = function(response){
@@ -37,12 +40,7 @@ $(document).on("pagecontainerbeforeshow", function(){
 });
 $(document).on("pageshow", "#loginPage", function(){
 	$("form").submit(function(event){
-		$.ajax({
-			type: "POST",
-			url: host + "login/login.json",
-			data: $("#loginPage form").serialize(),
-			success: loginSuccesCallback
-		});
+		doLogin($("#loginPagee form").serialize());
 	});
 });
 
