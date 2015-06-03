@@ -30,7 +30,7 @@ var loginSuccesCallback = function(response){
 	$.mobile.changePage("#streamPage");
 };
 $(document).on("pagecontainerbeforeshow", function(){
-	if(!sessionStorage.user){
+	if(!sessionStorage.user && window.location.hash != "#cadastre-se"){
 		$.mobile.changePage("#loginPage");
 		return;
 	}
